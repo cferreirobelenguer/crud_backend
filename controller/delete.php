@@ -16,9 +16,9 @@ function deleteProducts() {
     if (empty($_GET["idProduct"])) {
         exit("No hay id de producto para eliminar");
     }
-    //we delete information with id
+    //id product
     $idProduct= $_GET['idProduct'];
-
+    //delete product
     $db = databaseConection();
     $sentencia = $db->prepare("DELETE FROM stock WHERE id = ?");
     $resultado = $sentencia->execute([$idProduct]);
