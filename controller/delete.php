@@ -1,7 +1,8 @@
 <?php
+
 //Delete product
-function delete() {
-    //CORS
+function deleteProducts() {
+    //CORS, only localhost:4200 and method DELETE
     header("Access-Control-Allow-Origin: http://localhost:4200");
     header("Access-Control-Allow-Methods: DELETE");
     //database connection
@@ -24,6 +25,6 @@ function delete() {
     echo json_encode($resultado);
 }
 
-delete();
+deleteProducts();
 
 ?>
