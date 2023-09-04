@@ -5,7 +5,7 @@
 Angular, scss, mysql, php
 
 ## Descripción:
-### Creación de bbdd en phpmyadmin productos con la tabla stock y los atributos (id, descripcion, precio, img)
+### Creación en phpmyadmin de bbdd productos con la tabla stock y los atributos (id, descripcion, precio, img)
 ### Creación de Api Rest de ver, crear, actualizar y eliminar productos.
 
 ## endpoints
