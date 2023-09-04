@@ -12,9 +12,9 @@ function createProducts() {
         exit("Solo se permite método POST");
     }
 
-    //The data are empty
+    //data are empty
     if (empty($_POST["description"]) || empty($_POST["price"]) || empty($_POST["img"])) {
-        exit("No hay datos");
+        exit("Faltan datos");
     }
     //information of product
     $description= $_POST['description'];
