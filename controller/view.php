@@ -31,4 +31,5 @@ function getProducts() {
 }
 
 getProducts();
+
 ?>
