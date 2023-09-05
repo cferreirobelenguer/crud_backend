@@ -36,12 +36,8 @@ function updateProducts() {
     $db = databaseConection();
     $sentencia = $db-> prepare("UPDATE stock SET descripcion = ?, precio = ?, img = ? WHERE id = ?");
     $resultado = $sentencia-> execute([$description, $price, $img, $idProduct]);
-    if ($resultado) {
-        $response = array("message" => "Producto insertado correctamente", "id" => $db->lastInsertId());
-        echo json_encode($response);
-    } else {
-        echo json_encode(array("message" => "Error al insertar el producto"));
-    }
+    return json_encode($resultado);
+    
 }
 
 updateProducts();
