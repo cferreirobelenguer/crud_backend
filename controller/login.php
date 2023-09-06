@@ -20,8 +20,8 @@ function loginUser() {
         exit('Not found data');
     }
 
-    if ($sentencia = $db->prepare('SELECT id, contraseña FROM `usuarios` WHERE usuario = ? and contraseña = ?')) {
-        if ($sentencia->execute([$_POST['username'], $_POST['password']])) {
+    if ($sentencia = $db->prepare('SELECT id, contraseña FROM `usuarios` WHERE usuario = ?')) {
+        if ($sentencia->execute([$_POST['username']])) {
             $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
             if ($resultado) {
                 // User found
