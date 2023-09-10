@@ -31,10 +31,10 @@ function loginUser() {
             $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
             if ($resultado) {
                 // User found
-                echo json_encode($resultado);
+                echo json_encode(array("message" => $resultado));
             } else {
                 // User not found
-                echo 'User not found';
+                echo json_encode(array("message" => "No se encuentra el usuario"));;
             }
         } else {
             echo 'Error executing the SQL statement';
