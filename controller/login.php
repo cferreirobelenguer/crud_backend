@@ -4,24 +4,30 @@ function loginUser() {
     session_start();
     // CORS, only localhost:4200 and method POST
     header("Access-Control-Allow-Origin: http://localhost:4200");
-    header("Access-Control-Allow-Methods: POST");
+    header("Access-Control-Allow-Methods: GET");
     header("Access-Control-Allow-Headers: Content-Type");
     // Database connection
     include_once '../bbdd/database.php';
     $db = databaseConection();
 
     $metodo = $_SERVER["REQUEST_METHOD"];
-    if ($metodo != "POST" && $metodo != "OPTIONS") {
-        exit("Solo se permite método POST");
+    if ($metodo != "GET" && $metodo != "OPTIONS") {
+        exit("Solo se permite método GET");
+    }
+    // json file
+    $inputJSON = file_get_contents('php://input');
+
+    $data = json_decode($inputJSON, true);
+
+    if ($data === null) {
+        echo json_encode(array("error" => "Error al decodificar el JSON"));
+    } else {
+        $username = $data['username'];
+        $password = $data['password'];
     }
 
-    if (!isset($_POST['username'], $_POST['password'])) {
-        //No data in body
-        exit('Not found data');
-    }
-
-    if ($sentencia = $db->prepare('SELECT * FROM `usuarios` WHERE usuario = ?')) {
-        if ($sentencia->execute([$_POST['username']])) {
+    if ($sentencia = $db->prepare('SELECT * FROM `usuarios` WHERE usuario = ? and contraseña = ?')) {
+        if ($sentencia->execute([$username, $password])) {
             $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
             if ($resultado) {
                 // User found
