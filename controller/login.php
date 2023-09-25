@@ -31,7 +31,8 @@ function loginUser() {
             $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
             if ($resultado) {
                 // User found
-                echo json_encode(array("data" => $resultado));
+                $_SESSION['usuario'] = $resultado;
+                echo json_encode(array("data" =>  $_SESSION['usuario']));
             } else {
                 // User not found
                 echo json_encode(array("error" => "Inicio de sesión fallido"));
